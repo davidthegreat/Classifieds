@@ -2,8 +2,8 @@
 
   "use strict";
 
- angular.module('ngClassifieds').controller("classifiedsCtrl", function($scope, $http) {
-   $http.get('data/classfieds.json').then(function(classifieds){
+ angular.module('ngClassifieds').controller("classifiedsCtrl", function($scope, $http, classfiedsFactory) {
+  classfiedsFactory.getClassifieds().then(function(classifieds){
 
      $scope.classifieds = classifieds.data
     // console.log(data)
