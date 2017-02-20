@@ -2,11 +2,12 @@
 
   "use strict";
 
- angular.module('ngClassifieds').controller("classifiedsCtrl", function($scope) {
-   $scope.name = {
-     first: "Josh",
-     last: "Collins"
-   };
-   $scope.message = "Hello, world!!!"
+ angular.module('ngClassifieds').controller("classifiedsCtrl", function($scope, $http) {
+   $http.get('data/classfieds.json').then(function(classifieds){
+
+     $scope.classifieds = classifieds.data
+    // console.log(data)
+   })
+
  });
 })();
