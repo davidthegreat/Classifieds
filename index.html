@@ -14,12 +14,26 @@
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2><strong>ngClassifieds</strong></h2>
+
         <md-button ng-click="openSidebar()">
           <md-icon class="mdi mdi-plus-circle"></md-icon>
           New Classifieds
         </md-button>
+
+        <md-button ng-click="showFilters = true">
+          <md-icon class="mdi mdi-magnify"></md-icon>
+          Filters
+        </md-button>
+
       </div>
     </md-toolbar>
+
+    <div class="filters" layout="row" layout-align="center center" ng-show="showFilters">
+      <md-input-container>
+        <label>Enter Search Term</label>
+        <input type="text" name="" value="" ng-model="classifiedsFilter">
+      </md-input-container>
+    </div>
 
     <md-sidenav class="md-sidenav-left md-whiteframe-z2 " md-component-id="left">
       <md-toolbar>
@@ -62,7 +76,7 @@
 
 
     <md-content class="md-padding" layout="row" layout-wrap>
-      <md-card ng-repeat="classified in classifieds" flex="30">
+      <md-card ng-repeat="classified in classifieds | filter: classifiedsFilter" flex="30">
         <img ng-src="{{classified.image}}" alt="">
         <md-card-content>
           <div class="classified-info" ng-show="!showContact">
