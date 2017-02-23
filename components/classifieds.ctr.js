@@ -6,6 +6,8 @@
   classfiedsFactory.getClassifieds().then(function(classifieds){
 
      $scope.classifieds = classifieds.data
+     $scope.categories = getCategories($scope.classifieds);
+
     // console.log(data)
    })
 
@@ -15,6 +17,7 @@
      email: "david@cool.com"
 
    }
+
 
    $scope.openSidebar = function() {
      $mdSidenav('left').open();
@@ -59,7 +62,6 @@
     }, function() {
 
     })
-
    }
 
    function showToast(message){
@@ -71,6 +73,16 @@
      );
    }
 
+  function getCategories(classifieds){
+    var categories = [];
+
+    angular.forEach(classifieds, function(item) {
+      angular.forEach(item.categories, function(category){
+        categories.push(category)
+      });
+    });
+    return _.uniq(categories);
+  }
 
  });
 })();
